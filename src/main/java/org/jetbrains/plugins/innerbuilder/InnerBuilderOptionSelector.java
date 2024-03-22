@@ -36,6 +36,22 @@ public final class InnerBuilderOptionSelector {
         );
 
         options.add(new DropdownSelectorOption(
+                InnerBuilderOption.BUILD_METHOD_NAME_DROPDOWN,
+                "Select build method naming",
+                "Select what the builde method should look like.",
+                List.of(
+                        DropdownSelectorOptionValue.newBuilder()
+                                .withCaption("restore()")
+                                .withOption(InnerBuilderOption.RESTORE_BUILD_METHOD_NAME)
+                                .build(),
+                        DropdownSelectorOptionValue.newBuilder()
+                                .withCaption("build()")
+                                .withOption(InnerBuilderOption.BUILD_BUILD_METHOD_NAME)
+                                .build()
+                )
+        ));
+
+        options.add(new DropdownSelectorOption(
                 InnerBuilderOption.STATIC_BUILDER_DROPDOWN,
                 "Static builder naming",
                 "Select what the static builder method should look like.",
@@ -47,6 +63,10 @@ public final class InnerBuilderOptionSelector {
                         DropdownSelectorOptionValue.newBuilder()
                                 .withCaption("builder()")
                                 .withOption(InnerBuilderOption.STATIC_BUILDER_BUILDER_NAME)
+                                .build(),
+                        DropdownSelectorOptionValue.newBuilder()
+                                .withCaption("snapshotBuilder()")
+                                .withOption(InnerBuilderOption.STATIC_SNAPSHOT_BUILDER_NAME)
                                 .build(),
                         DropdownSelectorOptionValue.newBuilder()
                                 .withCaption("new[ClassName]()")
@@ -125,6 +145,13 @@ public final class InnerBuilderOptionSelector {
                 's',
                 "Generate builder methods that has the same parameter names in setter methods as field names, for example: builder.withName(String fieldName)")
         );
+
+
+        options.add(new CheckboxSelectorOption(
+                InnerBuilderOption.TO_BUILDER,
+                "Generate toBuilder from instance",
+                't'
+        ));
 
         return options;
     }
